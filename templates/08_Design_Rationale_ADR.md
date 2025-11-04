@@ -166,9 +166,9 @@
 
 > **Related ADRs:**
 >
-> * ADR-2025-02: Introduction of unified reward interface.
-> * ADR-2025-03: Logger modularization for reward tracking.
-> * ADR-2025-05 (Planned): Integration with evaluation metric normalizer.
+> * ADR-2025-02: Established the unified reward interface that this adaptive scaler plugs into (dependency).
+> * ADR-2025-03: Introduced logger modularization, enabling the additional reward-scaling diagnostics required here (supporting change).
+> * ADR-2025-05 (Planned): Will align evaluation metric normalization with the adaptive scaling decision (downstream impact).
 
 ---
 

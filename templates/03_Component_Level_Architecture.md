@@ -20,8 +20,8 @@
 
 ### Example
 
-> The `TrajectoryPlanner` component operates within the **Navigation Subsystem**.
-> It consumes positional and obstacle data from `PerceptionModule` and provides trajectory commands to the `MotionExecutor`.
+> The motion-planning component operates within the **navigation subsystem**.
+> It consumes positional and obstacle data from the upstream perception service and provides trajectory directives to the downstream motion executor.
 > Its purpose is to bridge perception and control, ensuring smooth and collision-free motion generation under dynamic environmental conditions.
 
 ---
@@ -38,7 +38,7 @@
 
 ### Example
 
-> Internally, the `TrajectoryPlanner` consists of three submodules:
+> Internally, the motion-planning component consists of three submodules:
 >
 > * **Preprocessor:** Normalizes raw sensor data.
 > * **Optimizer:** Computes feasible paths using a cost-based search algorithm.
@@ -63,7 +63,7 @@
 > * **Preprocessor:** Receives unfiltered sensor readings; outputs standardized occupancy grids.
 >
 >   * Motivation: Encapsulate domain-specific data normalization.
-> * **Optimizer:** Consumes occupancy grids, applies A* or RRT algorithms to generate feasible trajectories.
+> * **Optimizer:** Consumes occupancy grids, applies heuristic search algorithms to generate feasible trajectories.
 >
 >   * Motivation: Keep search logic decoupled for algorithmic flexibility.
 > * **Postprocessor:** Smooths trajectories and adjusts velocity profiles for execution.
@@ -87,11 +87,11 @@
 > The component’s data flow follows:
 >
 > ```
-> sensor_data → preprocess() → cost_map → optimize_path() → raw_trajectory → smooth_path() → final_trajectory
+> raw_sensor_stream (continuous) → preprocess() → occupancy_grid (discrete matrix) → optimize_path() → candidate_path (ordered waypoint set) → smooth_path() → motion_profile (time-parameterized trajectory)
 > ```
 >
 > This flow models an abstract **transformational pipeline**, converting perception data into actionable motion commands.
-> Each stage corresponds to a conceptual function (perception → planning → control).
+> Each stage corresponds to a conceptual function (perception → planning → control) and preserves the data-type expectations needed by neighboring components.
 
 ---
 
@@ -107,8 +107,8 @@
 
 ### Example
 
-> The `TrajectoryPlanner` receives asynchronous updates from the `PerceptionModule` via an event queue.
-> It publishes `TrajectoryCommand` objects to the `MotionExecutor` every simulation cycle.
+> The motion-planning component receives asynchronous updates from the perception service via an event queue.
+> It publishes trajectory command messages to the motion executor every simulation cycle.
 > The planner is stateless between cycles, ensuring deterministic reproducibility when replayed with identical input streams.
 
 ---
@@ -145,8 +145,8 @@
 
 ### Example
 
-> The `Optimizer` submodule is dynamically selected at runtime through a registry mechanism.
-> Developers can add new pathfinding strategies (e.g., `DynamicAStar`, `Dijkstra`) implementing the same interface without altering other modules.
+> The optimization submodule is dynamically selected at runtime through a registry mechanism.
+> Developers can add new pathfinding strategies (e.g., dynamic heuristic search, constrained shortest-path solver) that implement the shared interface without altering other modules.
 > This design supports algorithmic experimentation and subsystem evolution with minimal code coupling.
 
 ---

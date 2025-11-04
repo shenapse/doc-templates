@@ -64,7 +64,7 @@
 > * **Environment:** defines state transitions and observable signals.
 > * **Agent:** selects actions based on policy parameters.
 > * **Evaluator:** quantifies performance and guides adaptation.
->   Information flows cyclically — the agent observes, acts, receives feedback, and adapts.
+>   A layered systems map (Environment → Agent → Evaluator → Environment) accompanies the text to visualize the cyclic influence arrows and shared information channels.
 >   This triadic loop embodies the research’s central hypothesis: *adaptive feedback mechanisms are key to sustained learning stability.*
 
 ---
@@ -84,7 +84,7 @@
 > **Objective 1:** Quantitatively analyze how policy regularization affects convergence rate in stochastic environments.
 > **Objective 2:** Evaluate the transferability of learned parameters between related but distinct environmental models.
 > **Objective 3:** Demonstrate system modularity by substituting evaluation submodules without retraining agents.
-> Together, these objectives align theoretical insight with empirical validation.
+> Objective 1 probes the Lipschitz-constrained stochastic approximation regime introduced in Section 2, Objective 2 stresses the Conceptual Model’s environment-agent interface, and Objective 3 validates the evaluator modularity assumption—all linking theoretical claims with empirical validation.
 
 ---
 

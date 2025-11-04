@@ -64,20 +64,20 @@
 
 ### Example
 
-```python
-def compute_reward(events: List[Dict[str, Any]]) -> float
+```
+function compute_reward(events: Sequence<EventRecord>) -> ScalarReward
 ```
 
-| Parameter  | Type       | Description                    | Constraint                                |
-| ---------- | ---------- | ------------------------------ | ----------------------------------------- |
-| `events`   | list[dict] | Sequence of environment events | Must include keys `timestamp` and `value` |
-| **Return** | float      | Aggregated scalar reward       | Range [−1, 1]                             |
+| Parameter  | Type              | Description                    | Constraint                                |
+| ---------- | ----------------- | ------------------------------ | ----------------------------------------- |
+| `events`   | Sequence<EventRecord> | Chronological environment events | Each record supplies `timestamp` and `value` fields |
+| **Return** | ScalarReward      | Aggregated scalar reward       | Range [−1, 1]                             |
 
-> **Usage Example:**
+> **Usage Example (pseudocode):**
 >
-> ```python
-> events = [{"timestamp": 0.1, "value": +0.4}, {"timestamp": 0.4, "value": -0.2}]  
-> r = compute_reward(events)  # → 0.28
+> ```
+> events := [{timestamp: 0.1, value: +0.4}, {timestamp: 0.4, value: -0.2}]
+> r := compute_reward(events)  // → 0.28
 > ```
 
 ---
@@ -154,6 +154,8 @@ def compute_reward(events):
 > * **Downstream:** Feeds computed rewards into `PolicyEvaluator`.
 > * **Dependencies:** Requires `numpy ≥ 1.24`, `expit` from `scipy.special`.
 > * **Assumptions:** Runs in a synchronous simulation context (single-threaded loop).
+> * **Initialization:** Loads normalization statistics during component startup; registers reward strategies before accepting traffic.
+> * **Teardown:** Flushes buffered metrics and releases external library handles on shutdown.
 
 ---
 
@@ -171,7 +173,7 @@ def compute_reward(events):
 
 > * **Time Complexity:** O(N) per reward computation (N = number of events).
 > * **Memory Footprint:** < 1 MB for typical batch sizes (≤ 100 events).
-> * **Latency:** ~1.6 ms mean processing time (A100 GPU).
+> * **Latency:** ≈1.6 ms mean processing time when evaluated on batches of 100 events on an A100 GPU; CPU benchmarks should target ≤4 ms under equivalent load.
 > * **Optimization:** Utilizes in-place summation and deferred normalization to minimize overhead.
 
 ---

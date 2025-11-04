@@ -54,22 +54,22 @@
 >
 >   * *Input:* Agent actions
 >   * *Output:* Next system state
->   * *Key Property:* Deterministic given state and action.
+>   * *Key Property:* Deterministic given state and action, satisfying the stability assumptions outlined in the Conceptual Framework.
 > * **Agent:** Responsible for policy execution and decision-making.
 >
 >   * *Input:* Observations
 >   * *Output:* Action proposals
->   * *Key Property:* Adaptive via learned parameters.
+>   * *Key Property:* Adaptive via learned parameters, enabling the feedback-driven learning dynamics highlighted in the conceptual model.
 > * **Evaluator:** Responsible for transforming system outcomes into reward metrics.
 >
 >   * *Input:* (State, Action, Next State)
 >   * *Output:* Scalar reward, performance indicators
->   * *Key Property:* Stationary mapping ensuring consistent evaluation.
+>   * *Key Property:* Stationary mapping ensuring consistent evaluation and enabling comparative analysis of theoretical objectives.
 > * **Logger:** Responsible for traceability and reproducibility.
 >
 >   * *Input:* Full observation/action/reward tuples
 >   * *Output:* Structured logs and checkpoints
->   * *Key Property:* Persistent, append-only storage design.
+>   * *Key Property:* Persistent, append-only storage design that supports the reproducibility principle established in the conceptual foundations.
 
 ---
 
@@ -111,13 +111,13 @@
 
 ### Example
 
-> The system follows a **synchronous update scheme** governed by a global simulation clock.
+> The system follows a **clocked execution cycle** governed by a global simulation tick.
 >
-> * The **Environment** advances state only when all **Agent** actions are committed.
-> * The **Evaluator** operates asynchronously to prevent simulation slowdown, consuming data from a shared buffer.
-> * The **Logger** continuously subscribes to system events to capture full traceability without blocking.
+> * The **Environment** advances state only after the **Agent** commits actions for the current tick, preserving deterministic ordering.
+> * The **Evaluator** consumes the completed transition record on the following tick but returns its feedback before the next agent decision, ensuring the overall loop remains logically synchronous.
+> * The **Logger** continuously subscribes to system events to capture full traceability without blocking critical-path interactions.
 >
-> This hybrid synchronization model balances **temporal consistency** with **throughput efficiency**.
+> This disciplined timing model provides deterministic replay while still allowing the evaluator’s work queue to smooth short-lived spikes.
 
 ---
 
@@ -157,9 +157,9 @@
 ### Example
 
 > The system supports runtime registration of new Agents or Evaluators via configuration YAML.
-> A factory pattern loads class definitions dynamically, enforcing common interface contracts.
+> A factory layer admits implementations that satisfy the shared capability contracts: `observe()` → `act()` for agents and `(state, action, next_state)` → `score` for evaluators.
 >
-> For example, replacing a baseline `QAgent` with a `PolicyGradientAgent` requires no architectural change, demonstrating high extensibility.
+> For example, replacing a baseline value-based agent with a policy-gradient variant requires the new module to honor those interfaces and emit normalized reward signals, but no additional architectural change—illustrating extensibility with explicit compatibility constraints.
 
 ---
 

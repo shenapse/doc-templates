@@ -62,12 +62,12 @@
 
 ### Example
 
-| Metric                 | Definition                          | Range   | Interpretation           | Rationale                         |                        |                   |
-| ---------------------- | ----------------------------------- | ------- | ------------------------ | --------------------------------- | ---------------------- | ----------------- |
-| `MeanReward`           | Average episodic return             | [−1, 1] | ↑ = better policy        | Reflects learning performance     |                        |                   |
-| `RewardVariance`       | Var(reward per episode)             | [0, ∞)  | ↓ = more stable learning | Measures stochastic stability     |                        |                   |
-| `ConvergenceEpoch`     | Episodes until performance ≥ target | ℕ       | ↓ = faster convergence   | Indicates optimization efficiency |                        |                   |
-| `ReproducibilityError` |                                     | ΔReward | between runs             | [0, ∞)                            | ↓ = better consistency | Tests determinism |
+| Metric                 | Definition                                      | Range   | Interpretation                   | Rationale                           | Role      |
+| ---------------------- | ----------------------------------------------- | ------- | -------------------------------- | ----------------------------------- | --------- |
+| `MeanReward`           | Average episodic return                         | [−1, 1] | ↑ = better policy                | Captures primary learning outcome   | Primary   |
+| `RewardVariance`       | Var(reward per episode)                         | [0, ∞)  | ↓ = more stable learning         | Quantifies stochastic stability     | Primary   |
+| `ConvergenceEpoch`     | Episodes until performance ≥ target threshold   | ℕ       | ↓ = faster convergence           | Indicates optimization efficiency   | Auxiliary |
+| `ReproducibilityError` | Mean absolute difference between replicated runs | [0, ∞)  | ↓ = better cross-run consistency | Tests determinism and traceability  | Auxiliary |
 
 ---
 

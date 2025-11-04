@@ -20,7 +20,7 @@
 
 ### Example
 
-> The system uses YAML-based hierarchical configurations that define all experimental parameters, component options, and runtime settings.
+> The system uses YAML-based hierarchical configurations that define all experimental parameters, component options, and runtime settings—mirroring the tunable fields documented in each Component Specification (e.g., `reward.discount_rate`, `agent.optimizer`).
 > Default configurations reside in `/config/defaults/`, user overrides in `/config/experiments/`.
 > Command-line arguments take highest precedence, followed by environment variables, and finally base YAML files.
 > Each configuration file is validated on load to ensure schema consistency.
@@ -96,9 +96,9 @@ logging:
 
 > The logging subsystem records both operational and analytical information:
 >
-> * **Event logs:** Record simulation step progression and system status.
-> * **Metric logs:** Capture quantitative results such as loss and reward.
-> * **Error logs:** Capture exceptions and diagnostic information.
+> * **Event logs:** Record simulation step progression and system status, feeding the Evaluation Plan’s data-collection pipeline.
+> * **Metric logs:** Capture quantitative results such as loss and reward, enabling the Evaluation Plan’s metric computations.
+> * **Error logs:** Capture exceptions and diagnostic information, supporting ADR traceability by documenting deviations and remediation steps.
 >   Logs provide full execution trace for debugging and post-analysis reproducibility.
 
 ---
