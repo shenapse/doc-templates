@@ -1,4 +1,6 @@
-# ⚙️ Configuration & Logging Plan
+# {Project/Component Name} — Configuration & Logging Plan
+
+> Replace this heading placeholder with the specific project or system name (e.g., `Simulation Platform — Configuration & Logging Plan`) so the title clarifies the configuration scope.
 
 > **Purpose:**
 > This document defines how configurations and logs are managed, ensuring reproducibility, traceability, and transparency in experiments and system operation.

@@ -1,4 +1,6 @@
-# 🧮 Evaluation Plan
+# {Project Name} — Evaluation Plan
+
+> Replace this heading placeholder with the relevant project, system, or component name (e.g., `Navigation Stack — Evaluation Plan`) so the document title matches the evaluated scope.
 
 > **Purpose:**
 > This document defines how the system or component will be evaluated — specifying the objectives, metrics, baselines, experimental setup, and interpretation methods.

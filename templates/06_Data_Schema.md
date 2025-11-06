@@ -1,4 +1,6 @@
-# 📊 Data Schema / Dictionary
+# {Dataset/Component Name} — Data Schema / Dictionary
+
+> Replace this heading placeholder with the specific dataset or data domain name (e.g., `Trajectory Logs — Data Schema / Dictionary`) to keep the title descriptive.
 
 > **Purpose:**
 > This document defines all data structures, fields, and constraints used within the system or research framework.

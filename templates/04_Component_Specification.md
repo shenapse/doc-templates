@@ -1,4 +1,6 @@
-# ⚙️ Component Specification (Spec)
+# {Component Name — Component Specification}
+
+> Replace this heading placeholder with the actual component name (e.g., `Reward Calculator — Component Specification`) so the title reflects the specific component.
 
 > **Purpose:**
 > This document defines how the component is implemented — describing its behavior, interfaces, internal algorithms, configuration parameters, and validation strategy.

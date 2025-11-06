@@ -1,4 +1,6 @@
-# 🏗️ System-Level Architecture (SLA)
+# {System Name} — System-Level Architecture
+
+> Replace this heading placeholder with the specific system name (e.g., `Fulfillment Platform — System-Level Architecture`) to keep the document title contextualized.
 
 > **Purpose:**
 > This document defines the overall structure of the system — its primary components, their responsibilities, data flows, and coordination mechanisms.

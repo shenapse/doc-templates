@@ -1,4 +1,6 @@
-# 🧩 Component-Level Architecture (mini-SLA)
+# {Component Name} — Component-Level Architecture
+
+> Replace this heading placeholder with the actual component name (e.g., `Checkout Service — Component-Level Architecture`) so the document title remains component-specific.
 
 > **Purpose:**
 > This document describes the internal architecture of a single component, treating it as a self-contained subsystem.

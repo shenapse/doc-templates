@@ -1,4 +1,7 @@
-# 📘 Design Rationale / Architectural Decision Record (ADR)
+# {ADR-YYYYMMDD — Decision Title}
+
+> Name the file using `ADR-YYYYMMDD-short-kebab-slug.md` (e.g., `ADR-20250423-adaptive-reward-scaling.md`) to keep the ADR list chronological and self-descriptive.
+> Replace this heading placeholder with the matching ADR ID and a concise decision title. (e.g., `ADR-20250423 — Adaptive Reward Scaling`)
 
 > **Purpose:**
 > This document captures significant architectural or algorithmic decisions, their context, rationale, and consequences.
